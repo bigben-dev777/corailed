@@ -9,49 +9,49 @@ from detection import axe, pickaxe, tree, player, rock, black_rock, river, footp
 def test(im, agent, game, last, mode, change, tried, random):
     recognize_objects(im, game)
 
-    # if random:
-    #     player_pos = agent.rnd(15)
-    #     return 0, last
+    if random:
+        player_pos = agent.rnd(15)
+        return 0, last
 
-    # if change == False:
-    #     try:
-    #         if mode == "rock":
-    #             player_pos = game.get_pos('P')[0]
-    #             player_pos, last = agent.move("rock", game, False, player_pos,
-    #                                           last)
-    #             agent.process_input('K', player_pos, game)
-    #         else:
-    #             player_pos = game.get_pos('P')[0]
-    #             player_pos, last = agent.move("tree", game, False, player_pos,
-    #                                           last)
-    #             agent.process_input('T', player_pos, game)
-    #         return 0, last
-    #     except:
-    #         print(Fore.RED + "> PLAYER NOT FOUND, TRYING TO REVERSE PATH... ")
-    #         player_pos = agent.rnd(3)
-    #         return 0, last
+    if change == False:
+        try:
+            if mode == "rock":
+                player_pos = game.get_pos('P')[0]
+                player_pos, last = agent.move("rock", game, False, player_pos,
+                                              last)
+                agent.process_input('K', player_pos, game)
+            else:
+                player_pos = game.get_pos('P')[0]
+                player_pos, last = agent.move("tree", game, False, player_pos,
+                                              last)
+                agent.process_input('T', player_pos, game)
+            return 0, last
+        except:
+            print(Fore.RED + "> PLAYER NOT FOUND, TRYING TO REVERSE PATH... ")
+            player_pos = agent.rnd(3)
+            return 0, last
 
-    # else:
-    #     try:
-    #         player_pos = game.get_pos('P')[0]
-    #         if mode == "tree":
-    #             player_pos = agent.move("pickaxe", game, False, player_pos,
-    #                                     last)
-    #             print(Fore.YELLOW +
-    #                   "> FIND THE PICKAXE, WAITING FOR CONFIRMATION...")
-    #             return -1, last
+    else:
+        try:
+            player_pos = game.get_pos('P')[0]
+            if mode == "tree":
+                player_pos = agent.move("pickaxe", game, False, player_pos,
+                                        last)
+                print(Fore.YELLOW +
+                      "> FIND THE PICKAXE, WAITING FOR CONFIRMATION...")
+                return -1, last
 
-    #         elif mode == "rock":
-    #             player_pos = agent.move("axe", game, False, player_pos, last)
-    #             print(Fore.YELLOW +
-    #                   "> FIND THE AXE, WAITING FOR CONFIRMATION...")
-    #             return -1, last
-    #     except:
-    #         if mode == "tree":
-    #             print(Fore.RED + "> COULD NOT FIND THE PICKAXE, RETRYING...")
-    #         else:
-    #             print(Fore.RED + "> COULD NOT FIND THE AXE, RETRYING...")
-    #         return tried + 1, last
+            elif mode == "rock":
+                player_pos = agent.move("axe", game, False, player_pos, last)
+                print(Fore.YELLOW +
+                      "> FIND THE AXE, WAITING FOR CONFIRMATION...")
+                return -1, last
+        except:
+            if mode == "tree":
+                print(Fore.RED + "> COULD NOT FIND THE PICKAXE, RETRYING...")
+            else:
+                print(Fore.RED + "> COULD NOT FIND THE AXE, RETRYING...")
+            return tried + 1, last
 
 
 def recognize_objects(im, game_map):
@@ -90,10 +90,10 @@ def recognize_objects(im, game_map):
     unpack_array(arr_footpath, 'M', game_map)
     unpack_array(arr_empty_space, '0', game_map)
 
-    if axe_pos != None:
-        for i in range(len(axe_pos)):
-            axe_pos[i] = (axe_pos[i][0] // 22, axe_pos[i][1] // 16)
-            unpack_array(axe_pos, 'A', game_map, (0, -1))
+    # if axe_pos != None:
+    #     for i in range(len(axe_pos)):
+    #         axe_pos[i] = (axe_pos[i][0] // 22, axe_pos[i][1] // 16)
+    #         unpack_array(axe_pos, 'A', game_map, (0, -1))
 
     if pickaxe_pos != None:
         for i in range(len(pickaxe_pos)):
