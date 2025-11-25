@@ -9,9 +9,9 @@ from detection import axe, pickaxe, tree, player, rock, black_rock, river, footp
 def test(im, agent, game, last, mode, change, tried, random):
     recognize_objects(im, game)
 
-    if random:
-        player_pos = agent.rnd(15)
-        return 0, last
+    # if random:
+    #     player_pos = agent.rnd(15)
+    #     return 0, last
 
     if change == False:
         try:
