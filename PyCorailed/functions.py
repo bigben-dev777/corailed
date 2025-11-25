@@ -90,10 +90,10 @@ def recognize_objects(im, game_map):
     unpack_array(arr_footpath, 'M', game_map)
     unpack_array(arr_empty_space, '0', game_map)
 
-    if axe_pos != None:
-        for i in range(len(axe_pos)):
-            axe_pos[i] = (axe_pos[i][0] // 22, axe_pos[i][1] // 16)
-            unpack_array(axe_pos, 'A', game_map, (0, -1))
+    # if axe_pos != None:
+    #     for i in range(len(axe_pos)):
+    #         axe_pos[i] = (axe_pos[i][0] // 22, axe_pos[i][1] // 16)
+    #         unpack_array(axe_pos, 'A', game_map, (0, -1))
 
     if pickaxe_pos != None:
         for i in range(len(pickaxe_pos)):
