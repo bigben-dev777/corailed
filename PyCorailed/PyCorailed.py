@@ -7,8 +7,8 @@ from agent import simple_agent
 from capture import window
 from game import map
 
-# import functions
-# import printer
+import functions
+import printer
 
 ESC_KEY = 27
 FRAME_RATE = 10
